@@ -1,6 +1,6 @@
 
 <?php
-require_once 'config/db.php';
+require_once 'config/imp.php';
 require_once 'config/function2.php';
 
 // Check if the search parameter is present in the URL
@@ -148,7 +148,7 @@ $result = display_data($search);
                         <div class="col">
                             <form action="" method="GET" class="mb-3">
                                 <div class="input-group">
-                                    <input type="text" name="search" class="form-control" placeholder="Search by place" value="<?php echo $search; ?>">
+                                    <input type="text" name="search" class="form-control" placeholder="Search by City" value="<?php echo $search; ?>">
                                     <button type="submit" class="btn btn-primary">Search</button>
                                 </div>
                             </form>
@@ -157,15 +157,12 @@ $result = display_data($search);
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Place</th>
-                                            <th>Pregnancy Due Date</th>
-                                            <th>Contact Information</th>
-                                            <th>Medical History</th>
-                                            <th>Obstetric History</th>
-                                            <th>Blood Type</th>
-                                            <th>Allergies</th>
-                                            <th>Doctor Information</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Age</th>
+                                            <th>City</th>
+                                            <th>Pincode</th>
+                                            
                                             <!-- <th>Edit</th>
                                             <th>Delete</th> -->
                                         </tr>
@@ -174,15 +171,12 @@ $result = display_data($search);
                                         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                             <tr>
                                                 <td><?php echo $row['id']; ?></td>
-                                                <td><?php echo $row['name']; ?></td>
-                                                <td><?php echo $row['place']; ?></td>
-                                                <td><?php echo $row['due_date']; ?></td>
-                                                <td><?php echo $row['contact_info']; ?></td>
-                                                <td><?php echo $row['medical_history']; ?></td>
-                                                <td><?php echo $row['obstetric_history']; ?></td>
-                                                <td><?php echo $row['blood_type']; ?></td>
-                                                <td><?php echo $row['allergies']; ?></td>
-                                                <td><?php echo $row['doctor_info']; ?></td>
+                                                <td><?php echo $row['firstName']; ?></td>
+                                                <td><?php echo $row['lastName']; ?></td>
+                                                <td><?php echo $row['age']; ?></td>
+                                                <td><?php echo $row['city']; ?></td>
+                                                <td><?php echo $row['pCode']; ?></td>
+                                                
                                                 <!-- <td><a href="#" class="btn btn-primary">Edit</a></td>
                                                 <td><a href="#" class="btn btn-danger">Delete</a></td> -->
                                             </tr>

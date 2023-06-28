@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Student registration</title>
+  <title>Child registration</title>
   <!--Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -73,7 +73,6 @@
     </div>
   </header>
 
-
   <div class="container">
     <div class="form-container">
       <h2>Registration Form</h2>
@@ -82,13 +81,19 @@
         <div class="form-row">
           <div class="col">
             <div class="form-group">
-              <label for="name">Name:</label>
+              <label for="name">Mother id:</label>
+              <input type="text" class="form-control" id="m_id" name="mother_id" placeholder="Enter Mother's id no" required>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="name">Child Name:</label>
               <input type="text" class="form-control" id="name" name="childName" placeholder="Enter your name" required>
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="age">Age:</label>
+              <label for="age">Child Age:</label>
               <input type="number" class="form-control" id="age" name="childAge" placeholder="Enter your age" required>
             </div>
           </div>
@@ -192,7 +197,7 @@
           <label for="medicalIssuesDetails">Details of Medical Issues:</label>
           <textarea class="form-control" id="medicalIssuesDetails" name="medical_issue_details" placeholder="Enter details of medical issues" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>

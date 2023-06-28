@@ -1,6 +1,7 @@
 <?php
-require_once 'config/db.php';
+require_once 'config/imp.php';
 require_once 'config/functions.php';
+
 $result = display_data();
 ?>
 
@@ -14,12 +15,12 @@ $result = display_data();
     <title>Aganwadi Worker Detail</title>
     <style>
         body {
-            background-color: rgb(224, 183, 20);
+            background-color: white;
             color: black;
         }
         .sidebar {
-        background-color: #333;
-        color: #fff;
+        background-color: #fff;
+        color: #333;
         padding: 20px;
         height: 100vh;
         }
@@ -35,23 +36,28 @@ $result = display_data();
             padding: 0;
             margin: 0;
         }
+        .sidebar a:hover {
+            background-color: #333;
+            color: #fff;
+        }
         .sidebar ul li {
             margin-bottom: 15px;
         }
         .sidebar ul li a {
-            color: #fff;
+            color: #333;
             text-decoration: none;
         }
         .content {
             padding: 20px;
         }
         .navbar {
-            background-color: #000;
+            background-color: #333;
             color: #fff;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
+            
             z-index: 1000;
         }
         .navbar .navbar-brand {
@@ -70,15 +76,15 @@ $result = display_data();
             color: black;
         }
         .table thead th {
-            background-color: black;
-            color: yellow;
-            border-color: black;
+            background-color: white;
+            color: black;
+            border-color: white;
             padding: 10px;
             font-weight: bold;
             vertical-align: middle;
         }
         .table tbody td {
-            border-color: black;
+            border-color: white;
             padding: 10px;
         }
         .btn-primary {
@@ -148,22 +154,20 @@ $result = display_data();
                                     <thead>
                                         <tr>
                                         <th>Id</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Age</th>
-                                        <th>Delete</th>
+                                        <th>name</th>
+                                        <th>score</th>
+                                       
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                             <tr>
                                             <td><?php echo $row['id']; ?></td>
-                                            <td><?php echo $row['username']; ?></td>
-                                            <td><?php echo $row['email']; ?></td>
-                                            <td><?php echo $row['age']; ?></td>
-                                            <td><a href="#" class="btn btn-danger">Delete</a></td>
-                                                <!-- <td><a href="#" class="btn btn-primary">Edit</a></td>
-                                                <td><a href="#" class="btn btn-danger">Delete</a></td> -->
+                                            <td><?php echo $row['name']; ?></td>
+                                            <td><?php echo $row['score']; ?></td>
+                                            
+                                            
+                                              
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -179,6 +183,8 @@ $result = display_data();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-d6f5/2EnLdIYfqP1IWE3wq75T17yYED8MO4KEnX5bT63JfgIpq62mk1TsTZyS3HZ" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
 
 
 

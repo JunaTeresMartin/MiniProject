@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +16,53 @@ session_start();
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+  .btn-approve {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+    margin-right: 10px;
+  }
+
+  .btn-approve:hover {
+    transform: scale(1.1);
+  }
+
+  .btn-reject {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: red;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+    margin-right: 10px;
+  }
+
+  .btn-reject:hover {
+    transform: scale(1.1);
+  }
+  .btn-view {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:yellow;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+    margin-right: 10px;
+  }
+
+  .btn-view:hover {
+    transform: scale(1.1);
+  }
+  
+</style>
+
 </head>
 <body>
     <div id="mySidenav" class="sidenav">
@@ -22,8 +71,9 @@ session_start();
         <a href="agw.php"class="icon-a"><i class="fa fa-users icons"></i> &nbsp;&nbsp;Aganwadi Worker Details</a>
         <a href="pgw.php"class="icon-a"><i class="fa fa-list icons"></i> &nbsp;&nbsp;Preganant Women Details</a>
         <a href="child.php"class="icon-a"><i class="fa fa-shopping-bag icons"></i> &nbsp;&nbsp;Child Detail</a>
-        <a href="#"class="icon-a"><i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Messages</a>
-        <a href="#"class="icon-a"><i class="fa fa-user icons"></i> &nbsp;&nbsp;Accounts</a>
+        <a href="stockapprove.php"class="icon-a"><i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Stock Request</a>
+        <a href="stockanalysis.php"class="icon-a"><i class="fa fa-user icons"></i> &nbsp;&nbsp;Stock Analysis</a>
+        <a href="chat/text.php"class="icon-a"><i class="fa fa-user icons"></i> &nbsp;&nbsp;Paalan Chat</a>
         
     </div>
     <div id="main">
@@ -58,10 +108,10 @@ session_start();
         <div class="col-div-3">
             <div class="box">
             <?php
-        $con = mysqli_connect("localhost", "root", "", "AganwadiWorker");
+        $con = mysqli_connect("localhost", "root", "", "Paalan");
 
         // Execute the query
-        $sql = "SELECT COUNT(*) AS total_count FROM AGW";
+        $sql = "SELECT COUNT(*) AS total_count FROM worker_approval";
         $result = $con->query($sql);
 
         if ($result === false) {
@@ -79,10 +129,10 @@ session_start();
         <div class="col-div-3">
     <div class="box">
         <?php
-        $con = mysqli_connect("localhost", "root", "", "AganwadiWorker");
+        $con = mysqli_connect("localhost", "root", "", "Paalan");
 
         // Execute the query
-        $sql = "SELECT COUNT(*) AS total_count FROM pregnant_women";
+        $sql = "SELECT COUNT(*) AS total_count FROM women_personal_details";
         $result = $con->query($sql);
 
         if ($result === false) {
@@ -101,10 +151,11 @@ session_start();
         <div class="col-div-3">
             <div class="box">
             <?php
-        $con = mysqli_connect("localhost", "root", "", "AganwadiWorker");
+        $con = mysqli_connect("localhost", "root", "", "Paalan");
 
         // Execute the query
-        $sql = "SELECT COUNT(*) AS total_count FROM pregnant_women";
+        $sql = "SELECT COUNT(*) AS total_count FROM women_personal_details WHERE delivered = 'YES'";
+
         $result = $con->query($sql);
 
         if ($result === false) {
@@ -122,10 +173,10 @@ session_start();
         <div class="col-div-3">
             <div class="box">
             <?php
-        $con = mysqli_connect("localhost", "root", "", "AganwadiWorker");
+        $con = mysqli_connect("localhost", "root", "", "Paalan");
 
         // Execute the query
-        $sql = "SELECT COUNT(*) AS total_count FROM Child";
+        $sql = "SELECT COUNT(*) AS total_count FROM child_details";
         $result = $con->query($sql);
 
         if ($result === false) {
@@ -146,68 +197,110 @@ session_start();
             <div class="box-8">
                 <div class="content-box">
                     <p>Approval Board </p>
-                    
                     <?php
-                    // Retrieve submissions with approval status as "pending" from the database
-                    $conn = new mysqli("localhost", "root", "", "Requestes");
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+// Create a database connection
+$conn = mysqli_connect("localhost", "root", "", "Paalan");
 
-                    $sql = "SELECT * FROM submissions WHERE approval_status = 'pending'";
-                    $result = $conn->query($sql);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-                    if ($result->num_rows > 0) {
-                        echo "<table>";
-                        echo "<tr><th>id</th><th>username</th><th>email</th><th>age</th><th>Action</th></tr>";
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $row['id'] . "</td>";
-                            echo "<td>" . $row['username'] . "</td>";
-                            echo "<td>" . $row['email'] . "</td>";
-                            echo "<td>" . $row['age'] . "</td>";
-                            echo '<td>';
-                            echo '<button class="status-button" data-submission-id="' . $row['id'] . '" data-status="approved">Approve</button>';
-                            echo '<button class="status-button" data-submission-id="' . $row['id'] . '" data-status="rejected">Reject</button>';
-                            echo '</td>';
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    } else {
-                        echo "No pending submissions.";
-                    }
-                    $conn->close();
-                    ?>
+// Process approval
+if (isset($_GET['approve'])) {
+    $workerId = $_GET['approve'];
+    $approveQuery = "SELECT * FROM worker_registration WHERE id = $workerId";
+    $approveResult = mysqli_query($conn, $approveQuery);
 
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                    <script>
-                    $(document).ready(function() {
-                        // Listen for click on status buttons
-                        $('.status-button').click(function() {
-                            var submissionId = $(this).data('submission-id');
-                            var status = $(this).data('status');
+    if (mysqli_num_rows($approveResult) > 0) {
+        $row = mysqli_fetch_assoc($approveResult);
 
-                            // Send AJAX request to update the approval status
-                            $.ajax({
-                                type: 'POST',
-                                url: 'approve.php',
-                                data: { submissionId: submissionId, status: status },
-                                success: function(response) {
-                                    console.log(response);
-                                    // Handle success response if needed
-                                },
-                                error: function(error) {
-                                    console.log(error);
-                                    // Handle error gracefully if needed
-                                }
-                            });
-                        });
-                    });
-                    </script>
+        // Insert approved worker into the worker_approval table
+        $insertQuery = "INSERT INTO worker_approval (name, score) VALUES ('" . $row['name'] . "', " . $row['score'] . ")";
+        
+        mysqli_query($conn, $insertQuery);
+
+        $deleteQuery = "DELETE FROM worker_registration WHERE id = $workerId";
+        mysqli_query($conn, $deleteQuery);
+        
+
+
+
+        if (mysqli_query($conn, $insertQuery)) {
+            // Send email to the person
+           // Update with your email address
+            $to = $row['email'];
+            $subject = "Congratulations! You have been approved";
+            $message = "Dear " . $row['name'] . ",\n\nCongratulations! You have been approved to work in Anganwadi number " . $row['place'] . ". We appreciate your dedication and look forward to your contributions.\n\nBest regards,\nThe Anganwadi Team";
+            $headers = 'From: sender@example.com' . "\r\n" .
+            'Reply-To: sender@example.com' . "\r\n" .
+        '    X-Mailer: PHP/' . phpversion();
+            // Send the email
+            if (mail($to, $subject, $message, $headers)) {
+                echo "Worker details entered, approval email sent successfully, and Anganwadi information provided";
+            } else {
+                echo "Worker details entered, failed to send the approval email, but Anganwadi information provided";
+            }
+
+            // Delete worker from the worker_registration table
+            $deleteQuery = "DELETE FROM worker_registration WHERE id = $workerId";
+            mysqli_query($conn, $deleteQuery);
+        } else {
+            echo "Error: " . $insertQuery . "<br>" . mysqli_error($conn);
+        }
+    }
+}
+        
+
+
+
+      
+  
+
+// Process rejection
+if (isset($_GET['reject'])) {
+    $workerId = $_GET['reject'];
+
+    // Delete worker from the worker_details table
+    $deleteQuery = "DELETE FROM worker_registration WHERE id = $workerId";
+    mysqli_query($conn, $deleteQuery);
+}
+
+// Retrieve worker details for the approval table
+$approvalQuery = "SELECT id, name, score FROM worker_registration ORDER BY score DESC";
+$approvalResult = mysqli_query($conn, $approvalQuery);
+?>
+
+<!-- Display the approval table -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Score</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php while ($row = mysqli_fetch_assoc($approvalResult)): ?>
+      <tr>
+        <td><?php echo $row['id']; ?></td>
+        <td><?php echo $row['name']; ?></td>
+        <td><?php echo $row['score']; ?></td>
+        <td>
+          <a href="?approve=<?php echo $row['id']; ?>" class="btn-approve">Approve</a>
+          <a href="?reject=<?php echo $row['id']; ?>" class="btn-reject">Reject</a>
+          <a href="worker_details.php?id=<?php echo $row['id']; ?>" class="btn-view" >View Details</a>
+        </td>
+      </tr>
+    <?php endwhile; ?>
+  </tbody>
+</table>
+
 
                 </div>
             </div>
         </div>
+         
 
         <div class="col-div-4">
             <div class="box-4">
@@ -226,4 +319,5 @@ session_start();
                         </div>
                     </div>
                 </div>
-            </div
+                </div>
+               </html>

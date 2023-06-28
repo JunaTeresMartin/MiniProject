@@ -1,14 +1,14 @@
 <?php
-require_once 'db.php';
+require_once 'imp.php';
 
 function display_data($search = '') {
     global $con;
     
-    $query = "SELECT * FROM pregnant_women";
+    $query = "SELECT * FROM women_personal_details";
     
     if (!empty($search)) {
         $search = mysqli_real_escape_string($con, $search);
-        $query .= " WHERE place LIKE '%$search%'";
+        $query .= " WHERE city LIKE '%$search%'";
     }
     
     $result = mysqli_query($con, $query);

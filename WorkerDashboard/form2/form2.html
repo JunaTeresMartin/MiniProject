@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pregnant Women Registration</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- CSS -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    .top-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 25px;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .site-name {
+      display: flex;
+      align-items: center;
+    }
+
+    .site-name h1 {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+
+    .site-name h2 {
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    .form-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <header>
+    <div class="top-section">
+      <div class="site-name">
+        <h1>PAALAN</h1>
+        <h2 class="subheading">PREGNANT WOMEN DETAILS</h2>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="form-container">
+      <h2>Registration Form</h2>
+      <form id="PregnantWomenRegistrationForm" action="../form2/form2.php" method="POST">
+        <!-- Personal Details -->
+        <h4>Personal Details</h4>
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Enter your first name" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Enter your last name" required>
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" class="form-control" id="dob" name="DOB" required>
+        </div>
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" class="form-control" id="age" name="Age" placeholder="Enter your age" required>
+        </div>
+        <div class="form-group">
+          <label for="aadhaar">Aadhaar Number:</label>
+          <input type="text" class="form-control" id="aadhaar" name="Aadhaar" placeholder="Enter your Aadhaar number" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input type="text" class="form-control" id="address" name="Address" placeholder="Enter your address" required>
+        </div>
+        <div class="form-group">
+          <label for="city">City:</label>
+          <input type="text" class="form-control" id="city" name="City" placeholder="Enter your city" required>
+        </div>
+        <div class="form-group">
+          <label for="postalCode">Postal Code:</label>
+          <input type="text" class="form-control" id="postalCode" name="PostalCode" placeholder="Enter your postal code" required>
+        </div>
+        <div class="form-group">
+          <label for="contactNumber">Contact Number:</label>
+          <input type="tel" class="form-control" id="contactNumber" name="Ph_num" placeholder="Enter your contact number" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address:</label>
+          <input type="email" class="form-control" id="email" name="Email" placeholder="Enter your email address" required>
+        </div>
+
+        <!-- Pregnancy Details -->
+        <h4>Pregnancy Details</h4>
+        <div class="form-group">
+          <label for="dueDate">Expected Delivery Date:</label>
+          <input type="date" class="form-control" name="delivery_date" id="dueDate" required>
+        </div>
+        <div class="form-group">
+          <label for="lmp">Last Menstrual Period (LMP):</label>
+          <input type="date" class="form-control" name="lastMdate" id="lmp" required>
+        </div>
+        <div class="form-group">
+          <label for="numPregnancies">Number of Pregnancies:</label>
+          <input type="number" class="form-control" name="noOfPregnancies" id="numPregnancies" placeholder="Enter the number of pregnancies" required>
+        </div>
+        <div class="form-group">
+          <label for="numLiveBirths">Number of Live Births:</label>
+          <input type="number" class="form-control" name="liveN" id="numLiveBirths" placeholder="Enter the number of live births" required>
+        </div>
+        <div class="form-group">
+          <label for="numMiscarriages">Number of Miscarriages:</label>
+          <input type="number" class="form-control" name="missN" id="numMiscarriages" placeholder="Enter the number of miscarriages" required>
+        </div>
+        <div class="form-group">
+          <label for="numAbortions">Number of Abortions:</label>
+          <input type="number" class="form-control"  name="abN" id="numAbortions" placeholder="Enter the number of abortions" required>
+        </div>
+        <div class="form-group">
+          <label for="currentWeight">Current Weight:</label>
+          <input type="text" class="form-control" name="wt" id="currentWeight" placeholder="Enter your current weight" required>
+        </div>
+
+        <!-- Medical History -->
+        <h4>Medical History</h4>
+        <div class="form-group">
+          <label for="existingConditions">Existing Medical Conditions (if any):</label>
+          <input type="text" class="form-control" name="existing_conditions" id="existingConditions" placeholder="Enter any existing medical conditions">
+        </div>
+        <div class="form-group">
+          <label for="previousComplications">Previous Pregnancy Complications (if any):</label>
+          <input type="text" class="form-control" name="previous_conditions" id="previousComplications" placeholder="Enter any previous pregnancy complications">
+        </div>
+        <div class="form-group">
+          <label for="currentMedications">Current Medications:</label>
+          <input type="text" class="form-control" name="current_medications" id="currentMedications" placeholder="Enter your current medications">
+        </div>
+        <div class="form-group">
+          <label for="allergies">Allergies:</label>
+          <input type="text" class="form-control" name="Allergies" id="allergies" placeholder="Enter any allergies">
+        </div>
+        <!-- <div class="form-group">
+          <label for="bloodType">Blood Type:</label>
+          <input type="text" class="form-control" id="bloodType" placeholder="Enter your blood type">
+        </div> -->
+        <div class="form-group">
+            <label for="bloodType">Blood Type:</label>
+            <select class="form-control" name="blood_type" id="bloodType" required>
+              <option value="" selected disabled>Select your blood type</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+
+     
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

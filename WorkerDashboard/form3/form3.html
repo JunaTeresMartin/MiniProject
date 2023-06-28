@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .box {
+            width: 450px;
+            height: 500px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
+
+        .content{
+            width: 450px;
+            align-items: center;
+            background-color: white;
+            display: inline;
+            margin: 2px;
+            justify-content: center;
+            align-items: center;
+           
+        }
+    
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .box-content {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .box-content h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .box-content button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        
+        .box-content button:hover {
+            background-color: #45a049;
+        }
+        
+        .dashboard-link {
+            display: inline-block;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+        }
+        
+        .dashboard-link span {
+            color: #FFEA20;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="dashboard-link">
+        WORKER<span>DASHBOARD</span>
+    </a>
+    
+    <div class="container">
+        <div class="box">
+            <img src="pregnant2.png" alt="Pregnant Woman">
+        </div>
+        <div class="box">
+            <img src="child.jpg" alt="Child">
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <div class="box-content">
+                <h2>Update Details of Pregnant Woman</h2>
+                <button onclick="location.href='women_update.php'">Update Details</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="box-content">
+                <h2>Update Details of Child</h2>
+                <button onclick="location.href='child_update.php'">Update Details</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

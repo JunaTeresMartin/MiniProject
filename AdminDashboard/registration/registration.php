@@ -18,7 +18,7 @@
          if(isset($_POST['submit'])){ // click submit
             $username = $_POST['username'];
             $email = $_POST['email'];
-            $age = $_POST['age'];
+            $panchayath = $_POST['panchayath'];
             $password = $_POST['password'];  
 
             // check if email is unique
@@ -29,7 +29,7 @@
                       </div><br>";
                 echo "<a href='javascript:self.history.back()'><button class='btn'>Go Back</button></a>";
             } else {
-                mysqli_query($con,"INSERT INTO users(Username, Email, Age, PASSWORD) VALUES('$username','$email','$age','$password')") or die("Error Occurred");
+                mysqli_query($con,"INSERT INTO users(Username, Email, Panchayath, PASSWORD) VALUES('$username','$email','$panchayath','$password')") or die("Error Occurred");
                 echo "<div class='message'>
                            <p>Registration Successful</p>
                       </div><br>";
@@ -51,8 +51,8 @@
                 </div>
 
                 <div class="field input">
-                    <label for="age">Age</label>
-                    <input type="number" name="age" id="age" required>
+                    <label for="panchayath">Panchayath</label>
+                    <input type="text" name="panchayath" id="panchayath" required>
                 </div>
 
                 <div class="field input">

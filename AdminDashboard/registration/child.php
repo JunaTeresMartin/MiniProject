@@ -5,8 +5,10 @@
 // $query = "SELECT * FROM AganwadiWorker";
 // $result = mysqli_query($con, $query);
 
-require_once 'config/db.php';
+require_once 'config/imp.php';
 require_once 'config/function3.php';
+
+
 $result = display_data();
 ?>
 
@@ -153,12 +155,12 @@ $result = display_data();
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                        <th>Id</th>
+                                        
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Age</th>
-                                <th>Gender</th>
-                                <th>Parent_Name</th>
-                                <th>Address</th>
+                                <th>Block</th>
+                                
                                             <!-- <th>Edit</th>
                                             <th>Delete</th> -->
                                         </tr>
@@ -166,12 +168,12 @@ $result = display_data();
                                     <tbody>
                                         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                             <tr>
-                                            <td><?php echo $row['id']; ?></td>
-                                <td><?php echo $row['name']; ?></td>
-                                <td><?php echo $row['age']; ?></td>
-                                <td><?php echo $row['gender']; ?></td>
-                                <td><?php echo $row['parent_name']; ?></td>
-                                <td><?php echo $row['address']; ?></td>
+                                            
+                                <td><?php echo $row['child_id']; ?></td>
+                                <td><?php echo $row['child_name']; ?></td>
+                                <td><?php echo $row['child_age']; ?></td>
+                                <td><?php echo $row['child_blockNumber']; ?></td>
+                                
                                                 <!-- <td><a href="#" class="btn btn-primary">Edit</a></td>
                                                 <td><a href="#" class="btn btn-danger">Delete</a></td> -->
                                             </tr>

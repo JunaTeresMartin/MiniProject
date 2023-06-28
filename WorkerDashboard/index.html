@@ -9,7 +9,7 @@
     <div class="top-section">
       <div class="site-name">
         <!-- <h1>PAALAN</h1> -->
-        <a href="../LandingPage/index1.html" style="text-decoration: none;" ><h1 style="color: white;">PAALAN</h1></a>
+        <a href="../LandingPage/index1.php" style="text-decoration: none;" ><h1 style="color: white;">PAALAN</h1></a>
         <h2 class="dashboard">Dashboard</h2>
       </div>
 
@@ -28,10 +28,9 @@
   <div class="sidebar">
     <ul>
       <li><a href="#">Message</a></li>
-      <li><a href="#">Charts</a></li>
-      <li><a href="#">Feedback</a></li>
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="#visualization">Charts</a></li>
+      <li><a href="feedback.php">Feedback</a></li>
+      <li><a href="logout.php">Logout</a></li>
       <li><a href="#">Help</a></li>
     </ul>
   </div>
@@ -62,7 +61,7 @@
         <p>Click to Register</p>
       </div>
     </div>
-    <div class="box">
+    <div class="box" onclick="window.location.href='form3/form3.html';">
       <div class="image-section">
         <img src="motherChild1.jpg" alt="Image 3">
       </div>
@@ -72,7 +71,25 @@
       </div>
     </div>
   </div>
+  
+  <!-- data visualization -->
 
+  <div class="graph-container" section id="visualization">
+    <div class="graph-box">
+      <div class="canvas-container">
+        <canvas id="lineChart"></canvas>
+      </div>
+    </div>
+    <div class="graph-box">
+      <div class="canvas-container">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="chart.js"></script>
 
 </body>
 </html> 

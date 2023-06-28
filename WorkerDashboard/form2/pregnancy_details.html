@@ -23,7 +23,7 @@
       <form action="form11.php" method="POST" id="registrationForm">
         <div class="form-group">
           <label for="dueDate">Expected Delivery Date:</label>
-          <input type="date" class="form-control" id="dueDate" required>
+          <input type="date" class="form-control" id="dueDate" name="delivery_date" required>
         </div>
         <div class="form-group">
           <label for="lmp">Last Menstrual Period (LMP):</label>
@@ -64,11 +64,28 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
     // Pregnancy details Form Submission
-    function submitForMedicalHistoryForm() {
-        window.location.href = "medical_history.html";
-    }
+    // function submitForMedicalHistoryForm() {
+    //     window.location.href = "medical_history.html";
+    // }
     function goToPreviousPage() {
         window.location.href = "personal_details.html";
+    }
+    // script.js
+//   function saveDataAndNavigate(nextPage) {
+//       // Retrieve form data
+//       var dDate = document.getElementById("dueDate").value;
+
+//       // Store data in session storage
+//       sessionStorage.setItem("delivery_date", dDate);
+// }
+function submitForMedicalHistoryForm() {
+        window.location.href = "medical_history.html";
+        // Retrieve form data
+      var dDate = document.getElementById("dueDate").value;
+
+        // Store data in session storage
+      localStorage.setItem("delivery_date", dDate);
+      window.location.href = "medical_history.html";
     }
 
   </script>

@@ -1,22 +1,21 @@
 <?php
-// Database credentials
 $host = "localhost";
-$username = "root";
+$user = "root";
 $password = "";
-$dbname = "paalan";
+$db = "paalan";
 
-// Establish a connection to the database
-$conn = mysqli_connect($host, $username, $password, $dbname);
+$conn = mysqli_connect($host, $user, $password, $db);
 
-// Check if the connection was successful
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if ($conn == false) {
+    die("connection error");
 }
 
+
 // Process the form data when the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['submit'])) {
     // Retrieve the form data
     $child_name = $_POST['childName'];
+    $mother_id = $_POST['mother_id'];
     $child_age = $_POST['childAge'];
     $child_dob = $_POST['childDOB'];
     $child_mp = $_POST['childMP'];
@@ -34,52 +33,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $child_guardian_phone_no = $_POST['Guardian_no'];
 
     // SQL query to insert the form data into the table
-    $sql = "INSERT INTO child_details (child_name, child_age, child_dob, child_mp, child_blockNumber, child_city, child_district, father_name, father_occupation,mother_name,mother_occupation,no_of_family_members,annual_income,medical_issue_details,child_guardian_phone_no )
-            VALUES ('$child_name', '$child_age', '$child_dob', '$child_mp', '$child_blockNumber', '$child_city', '$child_district', '$father_name', '$father_occupation','$mother_name','$mother_occupation','$no_of_family_members','$annual_income','$medical_issue_details','$child_guardian_phone_no')";
-
-    // Execute the query
-    if (mysqli_query($conn, $sql)) {
-        echo "Data inserted successfully.";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    $sql = "INSERT INTO child_details (woman_id, child_name, child_age, child_dob, child_mp, child_blockNumber, child_city, child_district, father_name, father_occupation,mother_name,mother_occupation,no_of_family_members,annual_income,medical_issue_details,child_guardian_phone_no )
+            VALUES ('$mother_id','$child_name', '$child_age', '$child_dob', '$child_mp', '$child_blockNumber', '$child_city', '$child_district', '$father_name', '$father_occupation','$mother_name','$mother_occupation','$no_of_family_members','$annual_income','$medical_issue_details','$child_guardian_phone_no')";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("Location:form1.html");
+    } 
+    else {
+        echo "failed";
     }
 }
 
 // Close the database connection
 mysqli_close($conn);
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- if(isset($_POST['submit'])){ // Fetching variables of the form which travels in URL
- $child_name = $_POST['childName']; -->
-
-
-
-
-
-
-
-<!-- $sql="insert into child_details(child_name) values ('$child_name')
-$query = mysqli_query(");
-echo "<br/><br/><span>Data Inserted successfully...!!</span>";
-}
-else{
-echo "<p>Insertion Failed <br/> Some Fields are Blank....!!</p>";
-}
-}
-mysql_close($connection); // Closing Connection with Server
-?> -->
-
 
 
